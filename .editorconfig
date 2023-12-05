@@ -1,0 +1,10 @@
+[php]
+editor.tabSize = 2
+
+[html]
+editor.tabSize = 2
+
+[javascript]
+editor.tabSize = 2
+
+insert_final_newline = true
