@@ -1,8 +1,19 @@
 <pre>
 <?php
   if ($_SERVER['REQUEST_METHOD']=="POST") {
-    var_dump($_POST);
-    die();
+    $contact = [
+      "name" => $_POST["name"],
+      "phone_number" => $_POST["phone_number"],
+    ];
+
+    if(file_exists("contacts.json")){
+      $contacts = json_decode(file_get_contents("contacts.json"), true);
+    }else{
+      $contacts = [];
+    }
+    $contacts[] = $contact;
+    file_put_contents("contacts.json", json_encode($contacts));
+    header("Location: index.php");
   }
 ?>
 </pre>
@@ -37,7 +48,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand font-weight-bold" href="#">
+    <a class="navbar-brand font-weight-bold" href="index.php">
       <img class="mr-2" src="./static/img/logo.png" />
       ContactsApp
     </a>

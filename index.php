@@ -1,9 +1,9 @@
 <?php
-$contacts = [
-  ["name" => "pepe", "phone number" => "123456789"],
-  ["name" => "juan", "phone number" => "987654321"],
-  ["name" => "pedro", "phone number" => "123456789"],
-];
+if (file_exists("contacts.json")) {
+  $contacts = json_decode(file_get_contents("contacts.json"), true);
+}else {
+  $contacts = [];
+}
 ?>
 
 <!doctype html>
@@ -34,7 +34,7 @@ $contacts = [
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand font-weight-bold" href="#">
+      <a class="navbar-brand font-weight-bold" href="index.php">
         <img class="mr-2" src="./static/img/logo.png"/>
         ContactsApp
       </a>
@@ -52,10 +52,10 @@ $contacts = [
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/contacts-app/index.html">Home</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contacts-app/add.html">Add Contact</a>
+            <a class="nav-link" href="add.php">Add Contact</a>
           </li>
         </ul>
       </div>
@@ -64,12 +64,20 @@ $contacts = [
     <main>
       <div class="container pt-4 pt-3">
         <div class="row">
+          <?php if (count($contacts) == 0):?>
+            <div class="col-md-4 mx-auto">
+              <div class="card car-body text-center">
+                <p>No contacts</p>
+                <a href="add.php" class="btn btn-primary">Add contact</a>
+              </div>
+            </div>
+          <?php endif; ?>
           <?php foreach ($contacts as $contact) : ?>
             <div class="col-md-4 mb-3">
               <div class="card text-center">
                 <div class="card-body">
                   <h3 class="card-title text-capitalize"><?= $contact["name"] ?></h3>
-                  <p class="m-2"><?= $contact["phone number"] ?></p>
+                  <p class="m-2"><?= $contact["phone_number"] ?></p>
                   <a href="#" class="btn btn-secondary">Edit contact</a>
                   <a href="#" class="btn btn-danger">Delete contact</a>
                 </div>
