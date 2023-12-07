@@ -1,9 +1,9 @@
 <?php
-if (file_exists("contacts.json")) {
-  $contacts = json_decode(file_get_contents("contacts.json"), true);
-}else {
-  $contacts = [];
-}
+
+require "database.php";
+
+$contacts = $conn->query("SELECT * FROM contacts");
+
 ?>
 
 <!doctype html>
@@ -64,14 +64,14 @@ if (file_exists("contacts.json")) {
     <main>
       <div class="container pt-4 pt-3">
         <div class="row">
-          <?php if (count($contacts) == 0):?>
+          <?php if ($contacts->rowCount() == 0):?>
             <div class="col-md-4 mx-auto">
               <div class="card car-body text-center">
                 <p>No contacts</p>
                 <a href="add.php" class="btn btn-primary">Add contact</a>
               </div>
             </div>
-          <?php endif; ?>
+          <?php else:; ?>
           <?php foreach ($contacts as $contact) : ?>
             <div class="col-md-4 mb-3">
               <div class="card text-center">
@@ -83,7 +83,7 @@ if (file_exists("contacts.json")) {
                 </div>
               </div>
             </div>
-          <?php endforeach; ?>
+          <?php endforeach; endif ?>
         </div>
       </div>
     </main>
