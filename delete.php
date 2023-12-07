@@ -2,12 +2,12 @@
 
 require "database.php";
 
-$id =$_GET["id"];
+$id = $_GET["id"];
 
 $statement = $conn->prepare("SELECT * FROM contacts WHERE id = :id");
 $statement->bindParam(":id", $id);
 
-if($statement->rowCount()==0){
+if ($statement->rowCount() == 0) {
   http_response_code(404);
   echo "contact not found";
   return;
