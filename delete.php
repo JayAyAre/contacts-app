@@ -17,4 +17,4 @@ $statement = $conn->prepare("DELETE FROM contacts WHERE id = :id");
 $statement->bindParam(":id", $id);
 $statement->execute();
 
-header("Location: index.php");
+header("Location: home.php");

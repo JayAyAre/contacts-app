@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     name = pepe,
     and phone_number = 123123")
     DROP DATABASE contacts_app;*/
-    header("Location: index.php");
+    header("Location: home.php");
   }
 }
 ?>
