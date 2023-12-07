@@ -1,4 +1,3 @@
-<pre>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (empty($_POST['name']) || empty($_POST['phone_number'])) {
@@ -11,18 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $phone_number = $_POST['phone_number'];
 
     $statement = $conn->prepare("INSERT INTO contacts(name,phone_number) VALUES (:name,:phone_number)");
-    $statement->bindParam(":name", $_POST["name"]);
-    $statement->bindParam(":phone_number", $_POST["phone_number"]);
+    $statement->bindParam(":name", $name);
+    $statement->bindParam(":phone_number", $phone_number);
     $statement->execute();
     /* Becareful with sql inyection here, for example;
-    name = pepe,
+    name = pepe, phone_number = 123123
     and phone_number = 123123")
     DROP DATABASE contacts_app;*/
     header("Location: home.php");
   }
 }
 ?>
-</pre>
 
 <?php require "partials/header.php" ?>
 <main>

@@ -6,6 +6,7 @@ $id = $_GET["id"];
 
 $statement = $conn->prepare("SELECT * FROM contacts WHERE id = :id");
 $statement->bindParam(":id", $id);
+$statement->execute();
 
 if ($statement->rowCount() == 0) {
   http_response_code(404);
