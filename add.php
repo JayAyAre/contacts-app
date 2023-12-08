@@ -16,10 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     require "database.php";
     $name = $_POST['name'];
     $phone_number = $_POST['phone_number'];
+    $user_id = $_SESSION["user"]["id"];
 
-    $statement = $conn->prepare("INSERT INTO contacts(name,phone_number) VALUES (:name,:phone_number)");
+    $statement = $conn->prepare("INSERT INTO contacts(name,phone_number,user_id) VALUES (:name,:phone_number,:user_id)");
     $statement->bindParam(":name", $name);
     $statement->bindParam(":phone_number", $phone_number);
+    $statement->bindParam(":user_id", $_SESSION["user"]["id"]);
+
     $statement->execute();
     /* Becareful with sql inyection here, for example;
     name = pepe, phone_number = 123123
