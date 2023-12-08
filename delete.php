@@ -31,5 +31,6 @@ if ($contact["user_id"] != $_SESSION["user"]["id"]) {
 $statement = $conn->prepare("DELETE FROM contacts WHERE id = :id");
 $statement->bindParam(":id", $id);
 $statement->execute();
+$_SESSION['flash']=["message" =>"Contact {$_POST['name']} deleted successfully"];
 
 header("Location: home.php");
