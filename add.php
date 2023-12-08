@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if(!isset($_SESSION["user"])) {
+  header("Location: index.php");
+  return;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (empty($_POST['name']) || empty($_POST['phone_number'])) {
     $error = "fill all the fields";
