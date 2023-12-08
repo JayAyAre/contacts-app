@@ -22,6 +22,11 @@ if ($statement->rowCount() == 0) {
 }
 
 $contact = $statement->fetch(PDO::FETCH_ASSOC);
+if ($contact["user_id"] != $_SESSION["user"]["id"]) {
+  http_response_code(403);
+  echo "HTTP 403 Forbidden";
+  return;
+}
 
 $error = null;
 
