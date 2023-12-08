@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $_SESSION['flash']=["message" =>"Contact {$_POST['name']} updated successfully"];
 
     header("Location: home.php");
+    return;
   }
 }
 ?>

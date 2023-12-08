@@ -24,17 +24,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $statement->bindParam(":user_id", $_SESSION["user"]["id"]);
 
     $statement->execute();
-    $_SESSION['flash']=["message" =>"Contact {$_POST['name']} added successfully"];
+    $_SESSION['flash']=["message" =>"Contact {$name} added successfully"];
+
     /* Becareful with sql inyection here, for example;
-    name = pepe, phone_number = 123123
+    name = sql, phone_number = 123123
     and phone_number = 123123")
     DROP DATABASE contacts_app;*/
     header("Location: home.php");
+    return;
   }
 }
 ?>
 
 <?php require "partials/header.php" ?>
+
 <main>
   <div class="container pt-5">
     <div class="row justify-content-center">

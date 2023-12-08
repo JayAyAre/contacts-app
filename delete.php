@@ -34,3 +34,4 @@ $statement->execute();
 $_SESSION['flash']=["message" =>"Contact {$_POST['name']} deleted successfully"];
 
 header("Location: home.php");
+return;

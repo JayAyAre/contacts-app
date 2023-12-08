@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $_SESSION['user'] = $user;
       $_SESSION['flash']=["message" =>"Login successfully"];
       header("Location: home.php");
+      return;
     }
   }
 }
